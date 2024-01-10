@@ -1,5 +1,6 @@
 import discord
 import os
+import logging
 
 from dotenv import load_dotenv
 from discord.ext import commands
@@ -25,6 +26,9 @@ async def on_message(message):
 @bot.event
 async def on_reaction_add(reaction, user):
     if reaction.emoji == '👍' and user != bot.user:
-        await reaction.message.delete()
-
+        try:
+            await reaction.message.delete()
+        except Exception as e:
+            logging.error(e)
+            
 bot.run(os.getenv('TOKEN'))

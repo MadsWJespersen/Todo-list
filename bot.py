@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 from discord.ext import commands
 
 load_dotenv()
+token = os.getenv('TOKEN')
+
 
 intents = discord.Intents.default()
 intents.reactions = True
@@ -31,4 +33,4 @@ async def on_reaction_add(reaction, user):
         except Exception as e:
             logging.error(e)
             
-bot.run(os.getenv('TOKEN'))
+bot.run(token)
